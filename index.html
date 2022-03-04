@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Calculadora</title>
+</head>
+
+<body>
+    <h1>Calculadora</h1>
+    <div class="calculadora">
+        
+        <table>
+            <tr>
+                <td colspan="4">
+                    <input type="text" id="result" placeholder="0" disabled>
+                </td>
+            </tr>
+
+            <tr>
+                <td><button onclick="clean()">C</button></td>
+                <td><button onclick="back()"><</button></td>
+                <td><button onclick="insert('/')">/</button></td>
+                <td><button onclick="insert('*')">X</button></td>
+            </tr>
+
+            <tr>
+                <td><button onclick="insert('7')">7</button></td>
+                <td><button onclick="insert('8')">8</button></td>
+                <td><button onclick="insert('9')">9</button></td>
+                <td><button>-</button></td>
+            </tr>
+
+            <tr>
+                <td><button onclick="insert('4')">4</button></td>
+                <td><button onclick="insert('5')">5</button></td>
+                <td><button onclick="insert('6')">6</button></td>
+                <td><button onclick="insert('+')">+</button></td>
+            </tr>
+
+            <tr>
+                <td><button onclick="insert('1')">1</button></td>
+                <td><button onclick="insert('2')">2</button></td>
+                <td><button onclick="insert('3')">3</button></td>
+                <td rowspan="2"><button class="igual"  onclick="calcula()"> = </button></td>
+            </tr>
+
+            <tr>
+                <td colspan="2"><button class="zero">0</button></td>
+                <td><button onclick="insert('.')">.</button></td>
+            </tr>
+        </table>
+    </div>
+    <footer>2022 © Beatriz Paixão</footer>
+
+    <script>
+
+        function insert(num){
+            var $text = document.getElementById('result').value
+
+            if($text === "" && (num === '/' ||num === '*' ||num === '+' ||num === '/')){
+                $text = '0'
+            }
+        
+            document.getElementById('result').value = $text + num;
+        }
+
+        function clean(){
+            document.getElementById('result').value = "";
+        }
+
+        function back(){
+            var result = document.getElementById('result').value;
+            document.getElementById('result').value = result.substring(0, result.length -1)
+        }
+
+        function calcula(){
+            var result = document.getElementById('result').value;
+            if(result){
+                document.getElementById('result').value = eval(result)
+            } else{
+                document.getElementById('result').value = 'Não é possível dividir por zero'
+            }
+        }
+        
+        document.body.addEventListener('keydown', digite)
+        
+        function digite(e){
+            var key = e.key;
+
+            if(key === '1' || key === '2' || key === '3' || key === '4'|| key === '5' || key === '6' || key === '7' || key === '8' || key === '9' || key === '*' || key === '/' || key === '+' || key === '-' || key === 'Enter' || key  === 'Backspace'){
+
+                switch(key) {
+                case '1':
+                    document.getElementById('result').value += key
+                    break;
+                case '2':
+                    document.getElementById('result').value += key
+                    break;
+                case '3':
+                    document.getElementById('result').value += key
+                    break;
+                case '4':
+                    document.getElementById('result').value += key
+                    break;
+                case '5':
+                    document.getElementById('result').value += key
+                    break;
+                case '6':
+                    document.getElementById('result').value += key
+                    break;
+                case '7':
+                    document.getElementById('result').value += key
+                    break;
+                case '8':
+                    document.getElementById('result').value += key
+                    break;
+                case '9':
+                    document.getElementById('result').value += key
+                    break;
+                case '/':
+                    document.getElementById('result').value += key
+                    break;
+                case '*':
+                    document.getElementById('result').value += key
+                    break;
+                case '-':
+                    document.getElementById('result').value += key
+                    break;
+                case '+':
+                    document.getElementById('result').value += key
+                    break;
+                case 'Enter':
+                document.getElementById('result').blur()
+                    calcula()
+                    break;
+                case 'Backspace':
+                    back()
+            }
+            }
+
+        }
+
+
+    </script>
+
+</body>
+
+</html>
